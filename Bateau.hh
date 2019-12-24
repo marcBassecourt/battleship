@@ -5,6 +5,7 @@
 class Bateau {
 protected:
   size_t _id;
+  std::string typeBateau;
   static int _cpt_id;
   int taille;
 public:
