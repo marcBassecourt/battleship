@@ -1,0 +1,37 @@
+BATAILLE NAVALE
+
+//Rapport
+Mise en forme = 1
+Install = 1
+Description de l'appli = 1
+Fiertés = 1
+Diagramme UML = 1
+
+// Code
+Propre = 1
+Commenté = 1
+Erreur Valgrind = 1
+Compilation sans erreur/warning = 1
+Makefile = 1
+8 classes = 2
+3 niveaux de hiérarchie = 1
+2 fonctions virtuelles = 2
+2 surcharges d'opérateurs = 2
+conteneurs = 2
+Plus = 2
+
+//Fonctionnalités
+Jouable = 2
+Beau = 2
+Intéressant = 2
+Complex = 2
+Drôle = 1
+conception (hiérarchie à un sens) = 4
+
+//--------------------IDEES--------------------
+Jeu en réseau --> sockets
+
+Il y a un jeu qui contient 2 joueurs et 2 plateaux, un serveur et un client. Ces plateaux sont à chaque fois composés d'une grille. Sur chaque grille se trouve des bateaux et des sous-marins. Sur l'écran de chaque joueur se trouve en haut, sa grille et en bas, celle de son adversaire. Il existe différents types de bâtiment, un phare et plusieurs bateaux avec différentes formes.
+Si le phare est trouvé, la zone à 3 carreaux autour est visible par l'adversaire ( absence de SMOKE)
+SMOKE = il s'agit de toutes les autres cases correspondant à l'eau dans le jeu originale. Ici, on est en hiver, il y a donc du brouillard (effet SMOKE)
+MENU PRINCIPAL = reprendre le jeu (si une partie a été coupé au milieu), nouveau jeu, quitter
