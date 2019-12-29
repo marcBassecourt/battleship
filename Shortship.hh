@@ -5,6 +5,7 @@
 class Shortship:public Bateau
 {
 	public:
+		static unsigned int id;
 		Shortship();//Constructor
 		~Shortship();//Destructor
 		size_t getTaille() const;
@@ -14,10 +15,5 @@ class Shortship:public Bateau
 		bool getCoule() const;
 		unsigned int getId() const;
 		
-	private:
-		static unsigned int id;
-		bool coule;
-		
-		size_t taille;
-		bool tab[];
+	protected:
 };

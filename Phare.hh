@@ -16,7 +16,5 @@ class Phare:public Batiment
 		bool getTouche(int x) const;
 		std::string toString() const;
 		
-	private:
-		size_t taille;
-		bool tab[];	
+	protected:	
 };

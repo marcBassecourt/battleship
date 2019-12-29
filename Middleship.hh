@@ -5,6 +5,7 @@
 class Middleship:public Bateau
 {
 	public:
+		static unsigned int id;
 		Middleship();//Constructor
 		~Middleship();//Destructor
 		size_t getTaille() const;
@@ -14,10 +15,5 @@ class Middleship:public Bateau
 		bool getCoule() const;
 		unsigned int getId() const;
 		
-	private:
-		static unsigned int id;
-		bool coule;
-		
-		size_t taille;
-		bool tab[];
+	protected:
 };

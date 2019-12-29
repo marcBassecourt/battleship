@@ -7,6 +7,7 @@
 #include <string>
 #include <cstring>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -19,19 +20,19 @@ int main()
 	Longship l;
 	buf=l.toString();
 	cout << buf << endl;
-	l.~Longship();
+	//l.~Longship();
 	
 	Middleship m;
 	buf=m.toString();
 	cout << buf << endl;
-	m.~Middleship();
+	//m.~Middleship();
 	
-	buf=l.toString();
-	cout << buf << endl;
+	/*buf=l.toString();
+	cout << buf << endl;*/
 	
 	Shortship s;
 	buf=s.toString();
 	cout << buf << endl;
-	s.~Shortship();
+	//s.~Shortship();
 	return 0;
 }

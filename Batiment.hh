@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cstring>
 #include <sstream>
+#include <vector>
 
 class Batiment
 {
@@ -11,7 +12,7 @@ class Batiment
 		virtual bool getTouche(int x) const = 0;
 		virtual std::string toString() const = 0;
 		
-	private:
+	protected:
 		size_t taille;
-		bool tab[];
+		std::vector<bool> tab;
 };

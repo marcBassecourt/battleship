@@ -15,10 +15,7 @@ class Bateau:public Batiment
 		virtual bool getCoule() const = 0;
 		virtual unsigned int getId() const = 0;
 		
-	private:
-		static unsigned int id;
+	protected:
+		//static unsigned int id;
 		bool coule;
-		
-		size_t taille;
-		bool tab[];
 };
