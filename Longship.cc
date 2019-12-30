@@ -22,7 +22,7 @@ Longship::Longship()//Constructor
 }
 
 Longship::~Longship(){}//Destructor
-;
+
 size_t Longship::getTaille() const
 {
 	return taille;

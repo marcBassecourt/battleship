@@ -4,6 +4,9 @@
 #include "Middleship.hh"
 #include "Shortship.hh"
 #include "Bateau.hh"
+#include "Main.hh"
+#include "Phare.hh"
+#include "Plateau.hh"
 #include <string>
 #include <cstring>
 #include <sstream>
@@ -13,26 +16,18 @@ using namespace std;
 
 int main()
 {
-	//jeu.jouer();
-	string buf;
-	cout << "Walid" << endl;
+	Plateau elPlateau;
 	
-	Longship l;
+	cout << elPlateau;
+	/*size_t dimension=10;
+	char plateau=initGrille(dimension);
+	plateau.grille;*/
+	
+	string buf;
+	Phare l;
 	buf=l.toString();
 	cout << buf << endl;
-	//l.~Longship();
+	l.~Phare();
 	
-	Middleship m;
-	buf=m.toString();
-	cout << buf << endl;
-	//m.~Middleship();
-	
-	/*buf=l.toString();
-	cout << buf << endl;*/
-	
-	Shortship s;
-	buf=s.toString();
-	cout << buf << endl;
-	//s.~Shortship();
 	return 0;
 }

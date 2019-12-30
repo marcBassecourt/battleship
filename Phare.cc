@@ -6,7 +6,11 @@ using namespace std;
 Phare::Phare()//Constructor
 {
 	taille=1;
-	tab[taille]={false};
+	tab.push_back(taille);
+	for(size_t i=0;i<taille;i++)
+	{
+		tab[i]=false;
+	}
 }
 
 Phare::~Phare(){}//Destructor
