@@ -16,11 +16,13 @@ class Plateau
 		void afficherGrille();
 		size_t getTailleGrille() const;
 		std::string toString() const;
-		size_t getDimension() const;
+		size_t getDimensionX() const;
+		size_t getDimensionY() const;
 		char getPositionGrille(size_t i, size_t j) const;
-		
+
 	private:
-		size_t dimension;
-		char** grille;		
+		size_t dimensionX;
+		size_t dimensionY;
+		char** grille;
 };
 std::ostream& operator<<(std::ostream& out, const Plateau& elPlateau);

@@ -8,34 +8,38 @@ using namespace std;
 
 Plateau::Plateau()//Constructor
 {
-	dimension = 10;
-	grille = new char*[dimension];
-	for(size_t i=0;i<dimension;i++)
+	dimensionX = 10;
+	dimensionY = 10;
+	grille = new char*[dimensionX];
+	for(size_t i=0;i<dimensionX;i++)
 	{
-		grille[i]=new char[dimension];
-		for(size_t j=0;j<dimension;j++)
+		grille[i]=new char[dimensionY];
+		for(size_t j=0;j<dimensionY;j++)
 		{
-			grille[i][j]='_';	
+			grille[i][j]='_';
 		}
 	}
 }
 
 Plateau::Plateau(size_t x)
 {
-	dimension = x;
+	dimensionX = x;
+	dimensionY = x;
 	grille = new char*[x];
 	for(size_t i=0;i<x;i++)
 	{
 		grille[i]=new char[x];
 		for(size_t j=0;j<x;j++)
 		{
-			grille[i][j]='_';	
+			grille[i][j]='_';
 		}
 	}
 }
 
 Plateau::Plateau(size_t x, size_t y)
 {
+	dimensionX = x;
+	dimensionY = y;
 	grille = new char*[x];
 	for(size_t i=0;i<x;i++)
 	{
@@ -47,7 +51,12 @@ Plateau::Plateau(size_t x, size_t y)
 	}
 }
 
-Plateau::~Plateau(){}//Destructor
+Plateau::~Plateau(){
+	for (size_t i = 0 ; i < dimensionX ; i++){
+		delete[] grille[i];
+	}
+	delete[] grille;
+}//Destructor
 
 char** Plateau::initGrille(size_t x)
 {
@@ -57,7 +66,7 @@ char** Plateau::initGrille(size_t x)
 		grille[x]=new char[x];
 		for(size_t j=0;j<x;j++)
 		{
-			grille[i][j]='0';	
+			grille[i][j]='0';
 		}
 	}
 	return grille;
@@ -65,19 +74,24 @@ char** Plateau::initGrille(size_t x)
 
 void Plateau::afficherGrille()
 {
-	for(size_t i=0;i<dimension;i++)
+	for(size_t i=0;i<dimensionX;i++)
 	{
-		for(size_t j=0;j<dimension;j++)
+		for(size_t j=0;j<dimensionY;j++)
 		{
-			cout << grille[i][j] << "\t";	
+			cout << grille[i][j] << "\t";
 		}
 		cout << endl;
 	}
 }
 
-size_t Plateau::getDimension() const
+size_t Plateau::getDimensionX() const
 {
-	return dimension;
+	return dimensionX;
+}
+
+size_t Plateau::getDimensionY() const
+{
+	return dimensionX;
 }
 
 char Plateau::getPositionGrille(size_t i, size_t j) const
@@ -87,11 +101,11 @@ char Plateau::getPositionGrille(size_t i, size_t j) const
 
 std::ostream& operator<<(std::ostream& out, const Plateau& elPlateau)
 {
-	for(size_t i=0;i<elPlateau.getDimension();i++)
+	for(size_t i=0;i<elPlateau.getDimensionX();i++)
 	{
-		for(size_t j=0;j<elPlateau.getDimension();j++)
+		for(size_t j=0;j<elPlateau.getDimensionY();j++)
 		{
-			out << elPlateau.getPositionGrille(i,j) << "\t";	
+			out << elPlateau.getPositionGrille(i,j) << "\t";
 		}
 		out << endl;
 	}
