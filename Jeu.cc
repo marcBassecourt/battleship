@@ -33,6 +33,19 @@ void Jeu::initJeu(){
 	placerBatiment(plateauJ1,'L');
 	cout<<"Placez votre middleship de taille 4 !";
 	placerBatiment(plateauJ1,'M');
+	cout<<"Placez votre shortship de taille 3 !";
+	placerBatiment(plateauJ1,'S');
+	cout<<"Placez votre phare de taille 2 !";
+	placerBatiment(plateauJ1,'P');
+	system("clear");
+	cout<<players[1].getName()<<" c'est à vous ! \nPlacez votre longship de taille 5 !"<<flush;
+	placerBatiment(plateauJ2,'L');
+	cout<<"Placez votre middleship de taille 4 !";
+	placerBatiment(plateauJ2,'M');
+	cout<<"Placez votre shortship de taille 3 !";
+	placerBatiment(plateauJ2,'S');
+	cout<<"Placez votre phare de taille 2 !";
+	placerBatiment(plateauJ2,'P');
 }
 
 void Jeu::placerBatiment(Plateau &P, char c){ 	//Le char c permet de définir quel type de bâtiment on souhaite placer
