@@ -27,46 +27,55 @@ Jeu::Jeu():plateauJ1(15,15,'0'),plateauJ2(15,15,'0'),plateauVisibleJ1(15,15),pla
  	players[1] = Joueur(nom);
 }
 
-void Jeu::initJeu(){
+void Jeu::initJeu(){		//Fonction qui permet aux joueur de placer leurs bateaux
 	system("clear");
-	cout<<players[0].getName()<<" c'est à vous ! \nPlacez votre longship de taille 5 !"<<flush;
+	cout<<players[0].getName()<<" c'est à vous ! \n"<<flush;		//Joueur 1
 	placerBatiment(plateauJ1,'L');
-	cout<<"Placez votre middleship de taille 4 !";
+	cout<<(plateauJ1)<<endl;
 	placerBatiment(plateauJ1,'M');
-	cout<<"Placez votre shortship de taille 3 !";
+	cout<<(plateauJ1)<<endl;
 	placerBatiment(plateauJ1,'S');
-	cout<<"Placez votre phare de taille 2 !";
+	cout<<(plateauJ1)<<endl;
 	placerBatiment(plateauJ1,'P');
+	cout<<(plateauJ1)<<endl;
 	system("clear");
-	cout<<players[1].getName()<<" c'est à vous ! \nPlacez votre longship de taille 5 !"<<flush;
+	cout<<players[1].getName()<<" c'est à vous ! \n"<<flush;		//Joueur 2
 	placerBatiment(plateauJ2,'L');
-	cout<<"Placez votre middleship de taille 4 !";
+	cout<<(plateauJ2)<<endl;
 	placerBatiment(plateauJ2,'M');
-	cout<<"Placez votre shortship de taille 3 !";
+	cout<<(plateauJ2)<<endl;
 	placerBatiment(plateauJ2,'S');
-	cout<<"Placez votre phare de taille 2 !";
+	cout<<(plateauJ2)<<endl;
 	placerBatiment(plateauJ2,'P');
+	cout<<(plateauJ2)<<endl;
 }
 
 void Jeu::placerBatiment(Plateau &P, char c){ 	//Le char c permet de définir quel type de bâtiment on souhaite placer
 	int size = 0;
+	string str;
 	unsigned int k = 0;
 	switch(c){															//On définit la taille souhaitée du bâtiment
 		case'L':
 			size = 5;
+			str = "longship";
 			break;
 		case'M':
 			size = 4;
+			str = "middleship";
 			break;
 		case'S':
 			size = 3;
+			str = "shortship";
 			break;
 		case'P':
 			size = 2;
+			str = "phare";
 			break;
 		default:
 			break;
 	}
+	cout<<P;
+	cout<<"Placez votre "<< str << " de taille "<<size<<".";
 
 	while(k == 0){
 		int x1,y1,x2,y2;
@@ -97,11 +106,10 @@ void Jeu::placerBatiment(Plateau &P, char c){ 	//Le char c permet de définir qu
 int main()
 {
 	Jeu game;
-	system("clear");
-	cout<<(game.plateauJ1)<<flush;
 	game.initJeu();
-	system("clear");
-	cout<<(game.plateauJ1)<<flush;
+	//system("clear");
+	//cout<<(game.plateauJ1)<<endl;
+	//cout<<(game.plateauJ2)<<endl;
 	// Plateau elPlateau;
 	//
 	// cout << elPlateau;

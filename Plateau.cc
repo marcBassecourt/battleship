@@ -161,8 +161,16 @@ char Plateau::getPositionGrille(size_t i, size_t j) const
 
 std::ostream& operator<<(std::ostream& out, const Plateau& elPlateau)
 {
+	out << "/\t";
+	for(size_t j=0;j<elPlateau.getDimensionY();j++)
+	{
+		out << j << "\t";
+	}
+	out << endl;
+
 	for(size_t i=0;i<elPlateau.getDimensionX();i++)
 	{
+		out<< i << "\t";
 		for(size_t j=0;j<elPlateau.getDimensionY();j++)
 		{
 			out << elPlateau.getPositionGrille(i,j) << "\t";
