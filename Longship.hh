@@ -4,7 +4,7 @@
 
 class Longship:public Bateau
 {
-	public:
+public:
 		static unsigned int id;
 		Longship();//Constructor
 		~Longship();//Destructor
@@ -14,6 +14,6 @@ class Longship:public Bateau
 		//bool setCoule(bool y);
 		bool getCoule() const;
 		unsigned int getId() const;
-		
+
 	protected:
 };

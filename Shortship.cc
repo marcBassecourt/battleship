@@ -10,6 +10,7 @@ unsigned int Shortship::id=0;
 
 Shortship::Shortship()//Constructor
 {
+	cpt_Touche = 3;
 	id++;
 	taille=3;
 	//bool tab[taille];

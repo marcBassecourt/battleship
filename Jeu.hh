@@ -15,6 +15,8 @@ public:
 	std::string toString() const;
 	void initJeu();
 	void placerBatiment(Plateau &p,char c);
+	void tirer(Plateau &p,Plateau &pvisible,int i);
+	void play();
 
 	Plateau plateauJ1, plateauJ2, plateauVisibleJ1, plateauVisibleJ2;
 	Joueur players[2];

@@ -15,6 +15,4 @@ class Phare:public Batiment
 		size_t getTaille() const;
 		bool getTouche(int x) const;
 		std::string toString() const;
-		
-	protected:	
 };

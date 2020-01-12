@@ -10,6 +10,7 @@ unsigned int Middleship::id=0;
 
 Middleship::Middleship()//Constructor
 {
+	cpt_Touche = 4;
 	id++;
 	taille=4;
 	//bool tab[taille];

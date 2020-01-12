@@ -10,6 +10,7 @@ unsigned int Longship::id=0;
 
 Longship::Longship()//Constructor
 {
+	cpt_Touche = 5;
 	id++;
 	taille=5;
 	//bool tab[taille];

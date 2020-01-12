@@ -16,7 +16,7 @@
 
 using namespace std;
 
-Jeu::Jeu():plateauJ1(15,15,'0'),plateauJ2(15,15,'0'),plateauVisibleJ1(15,15),plateauVisibleJ2(15,15){
+Jeu::Jeu():plateauJ1(15,15,'0'),plateauJ2(15,15,'0'),plateauVisibleJ1(15,15,'~'),plateauVisibleJ2(15,15,'~'){
 	char nom[15];
 	system("clear");
 	cout<<"Entrez le nom du 1er joueur :"<<flush;
@@ -27,7 +27,7 @@ Jeu::Jeu():plateauJ1(15,15,'0'),plateauJ2(15,15,'0'),plateauVisibleJ1(15,15),pla
  	players[1] = Joueur(nom);
 }
 
-void Jeu::initJeu(){		//Fonction qui permet aux joueur de placer leurs bateaux
+void Jeu::initJeu(){		//Fonction qui permet aux joueur de placer leurs bâtiments
 	system("clear");
 	cout<<players[0].getName()<<" c'est à vous ! \n"<<flush;		//Joueur 1
 	placerBatiment(plateauJ1,'L');
@@ -102,11 +102,63 @@ void Jeu::placerBatiment(Plateau &P, char c){ 	//Le char c permet de définir qu
 
 }
 
+void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à une coordonnée précise
+	int x1,y1;
+	int k = 0;
+	system("clear");
+	cout<<(pvisible)<<endl<<flush;
+	while(k == 0){
+		cout<<players[i].getName()<<" à vous de tirer. Veuillez entrer les coordonnées à cibler!"<<endl;
+		cout<<"X:";
+		scanf("%u",&x1);
+		cout << "\nY:";
+		scanf("%u",&y1);
+		if((x1 >= 0 && x1 < (int)p.getDimensionX()) &&(y1 >= 0 && y1 < (int)p.getDimensionY())){
+			k++;
+		}
+		else{
+			cout<<"Veuillez entrer des coordonnées valides."<<endl;
+		}
+	}
+
+	if(p.getPositionGrille((size_t)x1,(size_t)y1) != '0'){
+		pvisible.setGrille(x1,y1,'X');
+		p.setGrille(x1,y1,'X');
+		cout<<"Touché!"<<endl;
+	}
+	else{
+		pvisible.setGrille(x1,y1,'0');
+		cout<<"Raté!"<<endl;
+	}
+}
+
+void Jeu::play(){		//Fonction de jeu
+	initJeu();
+	while(1){
+		tirer(plateauJ2,plateauVisibleJ1,0);
+		cout<<players[0].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire!"<<endl;
+		system("pause");
+		system("clear");
+		cout<<players[1].getName()<<" veuillez appuyer sur Entrée pour jouer!"<<flush;
+		tirer(plateauJ1,plateauVisibleJ2,1);
+		cout<<players[0].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire!"<<endl;
+		system("pause");
+	}
+}
 
 int main()
 {
 	Jeu game;
-	game.initJeu();
+	game.play();
+
+
+	// Jeu game;
+	// game.tirer(game.plateauJ2,game.plateauVisibleJ1,0);
+	// game.initJeu();
+	// game.tirer(game.plateauJ2,game.plateauVisibleJ1,0);
+
+
+
 	//system("clear");
 	//cout<<(game.plateauJ1)<<endl;
 	//cout<<(game.plateauJ2)<<endl;

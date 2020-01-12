@@ -5,7 +5,8 @@ using namespace std;
 
 Phare::Phare()//Constructor
 {
-	taille=1;
+	cpt_Touche = 2;
+	taille=2;
 	tab.push_back(taille);
 	for(size_t i=0;i<taille;i++)
 	{
@@ -27,7 +28,7 @@ bool Phare::getTouche(int x) const
 
 std::string Phare::toString() const
 {
-	
+
 	cout << "Le phare ";
 	if(getTouche(1))
 		cout << "a été trouvé, il éclaire donc sa zone environnante." << endl;

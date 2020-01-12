@@ -23,6 +23,7 @@ class Plateau
 		size_t getDimensionX() const;
 		size_t getDimensionY() const;
 		char getPositionGrille(size_t i, size_t j) const;
+		void setGrille(int i, int j, char c);
 		void placeBatiment(int x1,int x2,int y1,int y2,char c); //Place un bâtiment selon les coordonnées de ses extremités
 		bool libre(int x1,int x2,int y1,int y2);	//Vérifie si la zone est libre ou non.
 

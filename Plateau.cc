@@ -159,6 +159,10 @@ char Plateau::getPositionGrille(size_t i, size_t j) const
 	return grille[i][j];
 }
 
+void Plateau::setGrille(int i, int j, char c){
+	grille[i][j] = c;
+}
+
 std::ostream& operator<<(std::ostream& out, const Plateau& elPlateau)
 {
 	out << "/\t";
