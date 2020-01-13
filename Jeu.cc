@@ -30,27 +30,27 @@ Jeu::Jeu():plateauJ1(15,15,'0'),plateauJ2(15,15,'0'),plateauVisibleJ1(15,15,'~')
 void Jeu::initJeu(){		//Fonction qui permet aux joueur de placer leurs bâtiments
 	system("clear");
 	cout<<players[0].getName()<<" c'est à vous ! \n"<<flush;		//Joueur 1
-	placerBatiment(plateauJ1,'L');
+	placerBatiment(plateauJ1,'L',0);
 	cout<<(plateauJ1)<<endl;
-	placerBatiment(plateauJ1,'M');
+	placerBatiment(plateauJ1,'M',0);
 	cout<<(plateauJ1)<<endl;
-	placerBatiment(plateauJ1,'S');
+	placerBatiment(plateauJ1,'S',0);
 	cout<<(plateauJ1)<<endl;
-	placerBatiment(plateauJ1,'P');
+	placerBatiment(plateauJ1,'P',0);
 	cout<<(plateauJ1)<<endl;
 	system("clear");
 	cout<<players[1].getName()<<" c'est à vous ! \n"<<flush;		//Joueur 2
-	placerBatiment(plateauJ2,'L');
+	placerBatiment(plateauJ2,'L',1);
 	cout<<(plateauJ2)<<endl;
-	placerBatiment(plateauJ2,'M');
+	placerBatiment(plateauJ2,'M',1);
 	cout<<(plateauJ2)<<endl;
-	placerBatiment(plateauJ2,'S');
+	placerBatiment(plateauJ2,'S',1);
 	cout<<(plateauJ2)<<endl;
-	placerBatiment(plateauJ2,'P');
+	placerBatiment(plateauJ2,'P',1);
 	cout<<(plateauJ2)<<endl;
 }
 
-void Jeu::placerBatiment(Plateau &P, char c){ 	//Le char c permet de définir quel type de bâtiment on souhaite placer
+void Jeu::placerBatiment(Plateau &P, char c,int i){ 	//Le char c permet de définir quel type de bâtiment on souhaite placer
 	int size = 0;
 	string str;
 	unsigned int k = 0;
@@ -91,6 +91,7 @@ void Jeu::placerBatiment(Plateau &P, char c){ 	//Le char c permet de définir qu
 			if(P.libre(x1,x2,y1,y2)){
 				k = 1;
 				P.placeBatiment(x1,x2,y1,y2,c);
+				players[i].addBatiment(c);
 			}
 		}
 		else{
@@ -132,17 +133,33 @@ void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à un
 	}
 }
 
+void Jeu::waitEnter(int i,int j){	//Attend la touche entrée
+	switch(j){
+		case 0:
+			cout<<players[i].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire.";
+			break;
+		case 1:
+			system("clear");
+			cout<<players[i].getName()<<" veuillez appuyer sur Entrée pour Jouer."<<flush;
+			break;
+		default:
+			break;
+	}
+	char temp = 'x';
+	cin.ignore();
+	while (temp != '\n')
+		cin.get(temp);
+}
+
 void Jeu::play(){		//Fonction de jeu
 	initJeu();
 	while(1){
+		waitEnter(0,1);
 		tirer(plateauJ2,plateauVisibleJ1,0);
-		cout<<players[0].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire!"<<endl;
-		system("pause");
-		system("clear");
-		cout<<players[1].getName()<<" veuillez appuyer sur Entrée pour jouer!"<<flush;
+		waitEnter(0,0);
+		waitEnter(1,1);
 		tirer(plateauJ1,plateauVisibleJ2,1);
-		cout<<players[0].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire!"<<endl;
-		system("pause");
+		waitEnter(1,0);
 	}
 }
 

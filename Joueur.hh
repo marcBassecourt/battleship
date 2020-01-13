@@ -14,7 +14,7 @@ class Joueur {
 protected:
   std::string name;
   size_t _id;
-  std::vector<classBat> batsJoueur;
+  std::vector<Batiment*> batsJoueur;
 public:
   Joueur(){};
   Joueur(std::string s):name(s){};
