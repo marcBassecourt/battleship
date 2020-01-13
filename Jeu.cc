@@ -74,7 +74,8 @@ void Jeu::placerBatiment(Plateau &P, char c,int i){ 	//Le char c permet de défi
 		default:
 			break;
 	}
-	cout<<P;
+	system("clear");
+	cout<<P<<flush;
 	cout<<"Placez votre "<< str << " de taille "<<size<<".";
 
 	while(k == 0){
