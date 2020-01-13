@@ -9,11 +9,8 @@ class Shortship:public Bateau
 		Shortship();//Constructor
 		~Shortship();//Destructor
 		size_t getTaille() const;
-		bool getTouche(int x) const;
 		std::string toString() const;
-		//bool setCoule(bool y);
-		bool getCoule() const;
 		unsigned int getId() const;
-		
+
 	protected:
 };

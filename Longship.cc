@@ -13,13 +13,7 @@ Longship::Longship()//Constructor
 	cpt_Touche = 5;
 	id++;
 	taille=5;
-	//bool tab[taille];
-	tab.push_back(taille);
 	coule = false;
-	for(size_t i=0;i<taille;i++)
-	{
-		tab[i]=false;
-	}
 }
 
 Longship::~Longship(){}//Destructor
@@ -27,21 +21,6 @@ Longship::~Longship(){}//Destructor
 size_t Longship::getTaille() const
 {
 	return taille;
-}
-
-bool Longship::getTouche(int x) const
-{
-	return tab[x];
-}
-
-bool Longship::getCoule() const
-{
-	for(size_t i=0; i<taille;i++)
-	{
-		if(!getTouche(i))//Si le bateau n'est pas touché à un endroit du bateau
-			return false;
-	}
-	return true;
 }
 
 string Longship::toString() const

@@ -14,12 +14,7 @@ Shortship::Shortship()//Constructor
 	id++;
 	taille=3;
 	//bool tab[taille];
-	tab.push_back(taille);
 	coule = false;
-	for(size_t i=0;i<taille;i++)
-	{
-		tab[i]=false;
-	}
 }
 
 Shortship::~Shortship(){}//Destructor
@@ -27,22 +22,6 @@ Shortship::~Shortship(){}//Destructor
 size_t Shortship::getTaille() const
 {
 	return taille;
-}
-
-bool Shortship::getTouche(int x) const
-{
-	return tab[x];
-}
-
-bool Shortship::getCoule() const
-{
-	for(size_t i=0; i<taille;i++)
-	{
-		//cout << " Aie Caramba." << endl;
-		if(!getTouche(i))//Si le bateau n'est pas touché à un endroit du bateau
-			return false;
-	}
-	return true;
 }
 
 string Shortship::toString() const

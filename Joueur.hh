@@ -20,7 +20,8 @@ public:
   Joueur(std::string s):name(s){};
   std::string getName()const{return name;};
 
-
-  void addBatiment(char c);
+  bool mort();
+  void addBatiment(char c);     //Ajoute un bâtiments
+  void toucheBatiment(char c);  //Touche 1 fois un bâtiment
   void toString();
 };

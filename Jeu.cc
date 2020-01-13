@@ -106,6 +106,7 @@ void Jeu::placerBatiment(Plateau &P, char c,int i){ 	//Le char c permet de défi
 void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à une coordonnée précise
 	int x1,y1;
 	int k = 0;
+	int finJeu = 0;
 	system("clear");
 	cout<<(pvisible)<<endl<<flush;
 	while(k == 0){
@@ -122,10 +123,15 @@ void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à un
 		}
 	}
 
-	if(p.getPositionGrille((size_t)x1,(size_t)y1) != '0'){
+	if(p.getPositionGrille((size_t)x1,(size_t)y1) != '0'){	//Si la zone visée est un bâtiment
+		players[i].toucheBatiment(p.getPositionGrille((size_t)x1,(size_t)y1));
 		pvisible.setGrille(x1,y1,'X');
 		p.setGrille(x1,y1,'X');
-		cout<<"Touché!"<<endl;
+		if(players[i].mort()){
+			finJeu++;
+			system("clear");
+			cout<<"Fin de la partie, "<<players[i].getName()<<" a gagné!"<<flush;
+		}
 	}
 	else{
 		pvisible.setGrille(x1,y1,'0');
@@ -136,7 +142,7 @@ void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à un
 void Jeu::waitEnter(int i,int j){	//Attend la touche entrée
 	switch(j){
 		case 0:
-			cout<<players[i].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire.";
+			cout<<"\n"<<players[i].getName()<<" veuillez appuyer sur Entrée pour donner la main à votre adversaire.";
 			break;
 		case 1:
 			system("clear");

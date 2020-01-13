@@ -14,12 +14,7 @@ Middleship::Middleship()//Constructor
 	id++;
 	taille=4;
 	//bool tab[taille];
-	tab.push_back(taille);
 	coule = false;
-	for(size_t i=0;i<taille;i++)
-	{
-		tab[i]=false;
-	}
 }
 
 Middleship::~Middleship(){}//Destructor
@@ -29,21 +24,6 @@ size_t Middleship::getTaille() const
 	return taille;
 }
 
-bool Middleship::getTouche(int x) const
-{
-	return tab[x];
-}
-
-bool Middleship::getCoule() const
-{
-	for(size_t i=0; i<taille;i++)
-	{
-		//cout << " Aie Caramba." << endl;
-		if(!getTouche(i))//Si le bateau n'est pas touché à un endroit du bateau
-			return false;
-	}
-	return true;
-}
 
 string Middleship::toString() const
 {
