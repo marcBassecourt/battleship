@@ -1,4 +1,5 @@
 #include "Plateau.hh"
+#include "colormod.hh"
 #include <string>
 #include <cstring>
 #include <iostream>
@@ -159,27 +160,41 @@ char Plateau::getPositionGrille(size_t i, size_t j) const
 	return grille[i][j];
 }
 
+
+
 void Plateau::setGrille(int i, int j, char c){
 	grille[i][j] = c;
 }
 
 std::ostream& operator<<(std::ostream& out, const Plateau& elPlateau)
 {
-	out << "/\t";
+	Color::Modifier red(Color::FG_RED);
+	Color::Modifier green(Color::FG_GREEN);
+  Color::Modifier def(Color::FG_DEFAULT);
+	for(size_t j=0;j<elPlateau.getDimensionY()*9+2;j++)
+	{
+		out <<"-";
+	}
+	out << "\n" << "|\t/\t";
 	for(size_t j=0;j<elPlateau.getDimensionY();j++)
 	{
-		out << j << "\t";
+		out << green << j << def << "\t";
 	}
-	out << endl;
+	out << "|" << endl;
 
 	for(size_t i=0;i<elPlateau.getDimensionX();i++)
 	{
-		out<< i << "\t";
+		out<< "|\t" << red << i << def << "\t";
 		for(size_t j=0;j<elPlateau.getDimensionY();j++)
 		{
 			out << elPlateau.getPositionGrille(i,j) << "\t";
 		}
-		out << endl;
+		out << "|" << endl;
 	}
-	return out ;//<< "Plateau" << endl);
+	for(size_t j=0;j<elPlateau.getDimensionY()*9+2;j++)
+	{
+		out << "-";
+	}
+	out << endl;
+	return out ;
 }

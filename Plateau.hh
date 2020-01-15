@@ -27,6 +27,7 @@ class Plateau
 		void placeBatiment(int x1,int x2,int y1,int y2,char c); //Place un bâtiment selon les coordonnées de ses extremités
 		bool libre(int x1,int x2,int y1,int y2);	//Vérifie si la zone est libre ou non.
 
+
 	private:
 		size_t dimensionX;
 		size_t dimensionY;

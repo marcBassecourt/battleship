@@ -22,6 +22,6 @@ public:
 
   bool mort();
   void addBatiment(char c);     //Ajoute un bâtiments
-  void toucheBatiment(char c);  //Touche 1 fois un bâtiment
+  bool toucheBatiment(char c);  //Touche 1 fois un bâtiment
   void toString();
 };

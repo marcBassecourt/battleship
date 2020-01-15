@@ -7,6 +7,7 @@
 #include "Jeu.hh"
 #include "Phare.hh"
 #include "Plateau.hh"
+#include "colormod.hh"
 #include <string>
 #include <cstring>
 #include <sstream>
@@ -51,6 +52,9 @@ void Jeu::initJeu(){		//Fonction qui permet aux joueur de placer leurs bâtiment
 }
 
 void Jeu::placerBatiment(Plateau &P, char c,int i){ 	//Le char c permet de définir quel type de bâtiment on souhaite placer
+	Color::Modifier red(Color::FG_RED);
+	Color::Modifier green(Color::FG_GREEN);
+  Color::Modifier def(Color::FG_DEFAULT);
 	int size = 0;
 	string str;
 	unsigned int k = 0;
@@ -80,13 +84,13 @@ void Jeu::placerBatiment(Plateau &P, char c,int i){ 	//Le char c permet de défi
 
 	while(k == 0){
 		int x1,y1,x2,y2;
-		cout<<"\nVeuillez entrer les coordonnées de début du bâtiment \nX:";
+		cout<<"\nVeuillez entrer les coordonnées de début du bâtiment \n" << red << "X:" << def;
 		scanf("%u",&x1);
-		cout << "\nY:";
+		cout << "\n" << green << "Y:" << def;
 		scanf("%u",&y1);
-		cout<<"\nVeuillez entrer les coordonnées de fin du bâtiment \nX:";
+		cout<<"\nVeuillez entrer les coordonnées de fin du bâtiment \n" << red << "X:" << def;
 		scanf("%u",&x2);
-		cout<<"\nY:";
+		cout<<"\n" << green << "Y:" << def;
 		scanf("%u",&y2);
 		if(((x1 == x2) || (y1 == y2 )) && ((abs(x1 - x2 + y1 - y2)) == (size-1))){
 			if(P.libre(x1,x2,y1,y2)){
@@ -100,21 +104,32 @@ void Jeu::placerBatiment(Plateau &P, char c,int i){ 	//Le char c permet de défi
 
 		}
 	}
-
-
 }
 
-void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à une coordonnée précise
+void Jeu::explosionPhare(Plateau &P, Plateau &pVisible, int x, int y){
+	for (int i = x - 2; i < x + 2; i++){
+		for (int j = y - 2; j < y + 2; j++){
+			if(((i >= 0) && (i < (int)P.getDimensionX()) && ((j >= 0) && (j < (int) P.getDimensionY())))){
+				pVisible.setGrille(i,j,P.getPositionGrille(i,j));
+			}
+		}
+	}
+}
+
+
+bool Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à une coordonnée précise
+	Color::Modifier red(Color::FG_RED);
+	Color::Modifier green(Color::FG_GREEN);
+  Color::Modifier def(Color::FG_DEFAULT);
 	int x1,y1;
 	int k = 0;
-	int finJeu = 0;
 	system("clear");
 	cout<<(pvisible)<<endl<<flush;
 	while(k == 0){
 		cout<<players[i].getName()<<" à vous de tirer. Veuillez entrer les coordonnées à cibler!"<<endl;
-		cout<<"X:";
+		cout<< red << "X:" << def;
 		scanf("%u",&x1);
-		cout << "\nY:";
+		cout << "\n" << green << "Y:" << def;
 		scanf("%u",&y1);
 		if((x1 >= 0 && x1 < (int)p.getDimensionX()) &&(y1 >= 0 && y1 < (int)p.getDimensionY())){
 			k++;
@@ -125,19 +140,22 @@ void Jeu::tirer(Plateau &p,Plateau &pvisible,int i){	//Fonction pour tirer à un
 	}
 
 	if(p.getPositionGrille((size_t)x1,(size_t)y1) != '0'){	//Si la zone visée est un bâtiment
-		players[i].toucheBatiment(p.getPositionGrille((size_t)x1,(size_t)y1));
+		if(players[i].toucheBatiment(p.getPositionGrille((size_t)x1,(size_t)y1))){
+			explosionPhare(p,pvisible,x1,y1);
+		}
 		pvisible.setGrille(x1,y1,'X');
 		p.setGrille(x1,y1,'X');
 		if(players[i].mort()){
-			finJeu++;
 			system("clear");
-			cout<<"Fin de la partie, "<<players[i].getName()<<" a gagné!"<<flush;
+			cout<< green << "Fin de la partie, "<<players[i].getName()<<" a gagné!" << def <<flush;
+			return true;
 		}
 	}
 	else{
 		pvisible.setGrille(x1,y1,'0');
 		cout<<"Raté!"<<endl;
 	}
+	return false;
 }
 
 void Jeu::waitEnter(int i,int j){	//Attend la touche entrée
@@ -159,13 +177,14 @@ void Jeu::waitEnter(int i,int j){	//Attend la touche entrée
 }
 
 void Jeu::play(){		//Fonction de jeu
+	int cptFin = 0;
 	initJeu();
-	while(1){
+	while(cptFin == 0){
 		waitEnter(0,1);
-		tirer(plateauJ2,plateauVisibleJ1,0);
+		if(tirer(plateauJ2,plateauVisibleJ1,0)){cptFin++;}
 		waitEnter(0,0);
 		waitEnter(1,1);
-		tirer(plateauJ1,plateauVisibleJ2,1);
+		if(tirer(plateauJ1,plateauVisibleJ2,1)){cptFin++;}
 		waitEnter(1,0);
 	}
 }
